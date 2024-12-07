@@ -13,7 +13,7 @@ namespace AdventOfCode2024
             Data = new List<List<int>>();
 			LoadData();
             Console.WriteLine(CalculateFirstPart());
-            //Console.WriteLine(CalculateSecondPart());
+            Console.WriteLine(CalculateSecondPart());
             Console.WriteLine("-------------------");
         }
 
@@ -32,6 +32,50 @@ namespace AdventOfCode2024
 
 
             return sum;
+        }
+
+        private int CalculateSecondPart()
+        {
+
+            var sum = 0;
+
+            foreach (var l in Data)
+            {
+                if((CheckLevelsIncreasing(l) || CheckLevelsDecreasing(l)) && LevelDistance(l))
+                {
+                    sum++;
+                }
+                else
+                {
+                    sum += TolerateASingleBadLevel(l);
+                }
+            }
+
+
+            return sum;
+        }
+
+        private int TolerateASingleBadLevel(List<int> l)
+        {
+            List<int> nl;
+            for (int i = 0; i < l.Count; i++)
+            {
+                nl = new List<int>();
+                for (int j = 0; j < l.Count; j++)
+                {
+                    if (i != j)
+                    {
+                        nl.Add(l[j]);
+                    }
+                }
+                if ((CheckLevelsIncreasing(nl) || CheckLevelsDecreasing(nl)) && LevelDistance(nl))
+                {
+                    return 1;
+                }
+            }
+
+
+                return 0;
         }
 
         private bool LevelDistance(List<int> l)
