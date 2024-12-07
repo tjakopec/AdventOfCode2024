@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="T01Data %28copy%29.txt" />
+    <None Remove="T02Data %28copy%29.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="T01Data.txt" />
