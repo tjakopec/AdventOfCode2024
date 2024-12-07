@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="T01Data %28copy%29.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="T01Data.txt" />
+    <EmbeddedResource Include="T02Data.txt" />
+  </ItemGroup>
+</Project>
