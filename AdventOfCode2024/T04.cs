@@ -16,17 +16,72 @@ namespace AdventOfCode2024
 		{
             Console.WriteLine("Day 4");
 			LoadData();
-            Console.WriteLine(CalculateFirstPart());
-            //Console.WriteLine(CalculateSecondPart());
+            //Console.WriteLine(CalculateFirstPart());
+            //PrintFirstPart();
+            Console.WriteLine(CalculateSecondPart());
             Console.WriteLine("-------------------");
         }
 
         private int CalculateSecondPart()
         {
-
-           
-            return CalculateFirstPart();
+            Used = new bool[rows, columns];
+            return X();
         }
+
+
+
+        private int X()
+        {
+            var sum = 0;
+            for (int i = 0; i < rows - 2; i++)
+            {
+                for (int j = 0; j < columns - 2; j++)
+                {
+                    /*
+                    Console.WriteLine("{0}.{1}\n.{2}.\n{3}.{4}",
+                        Data[i, j] ,
+                        Data[i, j + 2] ,
+                        Data[i + 1, j + 1] ,
+                        Data[i + 2, j],
+                        Data[i + 2, j + 2]);
+                    */
+
+                    if ((Data[i, j] == 'M' &&
+                        Data[i, j + 2] == 'S' &&
+                        Data[i + 1, j + 1] == 'A' &&
+                        Data[i + 2, j] == 'M' &&
+                        Data[i + 2, j + 2] == 'S'
+                        )
+                        ||
+                        (Data[i, j] == 'M' &&
+                        Data[i, j + 2] == 'M' &&
+                        Data[i + 1, j + 1] == 'A' &&
+                        Data[i + 2, j] == 'S' &&
+                        Data[i + 2, j + 2] == 'S'
+                        )
+                        ||
+                        (Data[i, j] == 'S' &&
+                        Data[i, j + 2] == 'M' &&
+                        Data[i + 1, j + 1] == 'A' &&
+                        Data[i + 2, j] == 'S' &&
+                        Data[i + 2, j + 2] == 'M'
+                        )
+                        ||
+                        (Data[i, j] == 'S' &&
+                        Data[i, j + 2] == 'S' &&
+                        Data[i + 1, j + 1] == 'A' &&
+                        Data[i + 2, j] == 'M' &&
+                        Data[i + 2, j + 2] == 'M'
+                        )
+                        )
+                    {
+                        sum++;
+                    }
+                }
+            }
+            return sum;
+        }
+
 
 
 
@@ -272,6 +327,18 @@ namespace AdventOfCode2024
 
             Used = new bool[rows, columns];
 
+        }
+
+        private void PrintFirstPart()
+        {
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    Console.Write(Used[i,j] ? Data[i,j] : '.');
+                }
+                Console.WriteLine();
+            }
         }
     }
 }
